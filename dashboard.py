@@ -11,7 +11,6 @@ import numpy as np
 
 df = requests.get("http://127.0.0.1:8000/get_data").json()
 df = pd.DataFrame(df)
-model = joblib.load('model_GBM.pkl')
 
 # data processing
 df = df.fillna(0)
