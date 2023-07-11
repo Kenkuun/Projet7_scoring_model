@@ -6,6 +6,8 @@ import json
 import numpy as np
 import git
 
+#Test commit
+
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
 model = joblib.load("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/model_GBM.pkl")
