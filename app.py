@@ -4,21 +4,31 @@ import joblib
 import pandas as pd
 import json
 import numpy as np
-
+import git
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
 model = joblib.load("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/model_GBM.pkl")
 df = pd.read_csv("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/df.csv")
 
+@app.route('/', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('https://github.com/Kenkuun/Projet7_scoring_model.git')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+    else:
+        return 'Wrong event type', 400
+
 @app.route('/get_data')
 def get_data():
     data = df.to_json(orient='records')
     return data
 
-@app.route('/', methods=['GET'])
-def index():
-    return 'Home page'
+# @app.route('/', methods=['GET'])
+# def index():
+#     return 'Home page'
 
 def make_prediction(client_id):
     X = df[df['SK_ID_CURR'] == client_id]
