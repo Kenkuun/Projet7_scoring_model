@@ -8,8 +8,8 @@ import numpy as np
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
-model = joblib.load("/home/kenjilamy/.virtualenvs/venv/dash_package/model_GBM.pkl")
-df = pd.read_csv("/home/kenjilamy/.virtualenvs/venv/dash_package//df.csv")
+model = joblib.load("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/model_GBM.pkl")
+df = pd.read_csv("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/df.csv")
 
 @app.route('/get_data')
 def get_data():
