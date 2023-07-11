@@ -13,7 +13,7 @@ app.config["DEBUG"] = False
 model = joblib.load("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/model_GBM.pkl")
 df = pd.read_csv("/home/kenjilamy/.virtualenvs/venv/Projet7_scoring_model/df.csv")
 
-@app.route('/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
         repo = git.Repo('https://github.com/Kenkuun/Projet7_scoring_model.git')
