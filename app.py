@@ -28,9 +28,9 @@ def get_data():
     data = df.to_json(orient='records')
     return data
 
-# @app.route('/', methods=['GET'])
-# def index():
-#     return 'Home page'
+@app.route('/', methods=['GET'])
+def index():
+    return 'Home page'
 
 def make_prediction(client_id):
     X = df[df['SK_ID_CURR'] == client_id]
