@@ -1,4 +1,4 @@
-import requests
+# import requests
 from app import make_prediction
 
 api = "http://127.0.0.1:8000"
