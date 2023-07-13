@@ -7,8 +7,8 @@ import numpy as np
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
-model = joblib.load("model_GBM.pkl")
-df = pd.read_csv("df.csv")
+model = joblib.load("../Projet7_scoring_model/model_GBM.pkl")
+df = pd.read_csv("../Projet7_scoring_model/df.csv")
 
 @app.route('/', methods=['GET'])
 def index():
