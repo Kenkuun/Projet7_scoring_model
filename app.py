@@ -8,8 +8,8 @@ import git
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
-model = joblib.load("model_GBM.pkl")
-df = pd.read_csv("df.csv")
+model = joblib.load("/home/kenjilamy/Projet7_scoring_model/model_GBM.pkl")
+df = pd.read_csv("/home/kenjilamy/Projet7_scoring_model/df.csv")
 # /home/kenjilamy/Projet7_scoring_model/
 
 @app.route('/', methods=['GET'])
@@ -41,7 +41,7 @@ def webhook():
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
     else:
-        return 'Wrong event type', 400
+        return 'Error', 400
           
 if __name__ == "__main__":
     app.run(port=8000)
