@@ -4,11 +4,12 @@ import joblib
 import pandas as pd
 import json
 import numpy as np
+import git
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
-model = joblib.load("/home/kenjilamy/Projet7_scoring_model/model_GBM.pkl")
-df = pd.read_csv("/home/kenjilamy/Projet7_scoring_model/df.csv")
+model = joblib.load("model_GBM.pkl")
+df = pd.read_csv("df.csv")
 # /home/kenjilamy/Projet7_scoring_model/
 
 @app.route('/', methods=['GET'])
@@ -31,6 +32,16 @@ def proba():
         client_id = int(request.args["client_id"])
         pred = make_prediction(client_id).tolist()[0]
         return pred
-        
+
+@app.route('/update_server', methods=['POST'])
+def webhook():
+    if request.method == 'POST':
+        repo = git.Repo('https://github.com/Kenkuun/Projet7_scoring_model.git')
+        origin = repo.remotes.origin
+        origin.pull()
+        return 'Updated PythonAnywhere successfully', 200
+    else:
+        return 'Wrong event type', 400
+          
 if __name__ == "__main__":
     app.run(port=8000)
