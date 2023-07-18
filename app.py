@@ -8,8 +8,8 @@ import git
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
-model = joblib.load("/home/kenjilamy/Projet7_scoring_model/model_GBM.pkl")
-df = pd.read_csv("/home/kenjilamy/Projet7_scoring_model/df.csv")
+model = joblib.load("model_GBM.pkl")
+df = pd.read_csv("df.csv")
 # /home/kenjilamy/Projet7_scoring_model/
 
 @app.route('/', methods=['GET'])
@@ -33,15 +33,12 @@ def proba():
         pred = make_prediction(client_id).tolist()[0]
         return pred
 
-@app.route('/update_server', methods=['POST'])
+@app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
-    if request.method == 'POST':
-        repo = git.Repo('./Projet7_scoring_model')
-        origin = repo.remotes.origin
-        origin.pull()
-        return 'Updated PythonAnywhere successfully', 200
-    else:
-        return 'Error', 400
+    repo = git.Repo('./Projet7_scoring_model')
+    origin = repo.remotes.origin
+    origin.pull()
+    return 'Updated PythonAnywhere successfully', 200
           
 if __name__ == "__main__":
     app.run(port=8000)
