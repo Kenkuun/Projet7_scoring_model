@@ -35,7 +35,6 @@ def proba():
 
 @app.route('/update_server', methods=['GET', 'POST'])
 def webhook():
-    if request.method == 'GET':
         repo = git.Repo('../dash_package')
         origin = repo.remotes.origin
         origin.pull()
