@@ -33,7 +33,7 @@ def proba():
         pred = make_prediction(client_id).tolist()[0]
         return pred
 
-@app.route('/update_server', methods=['GET', 'POST'])
+@app.route('/update_server', methods=['POST'])
 def webhook():
     repo = git.Repo('../Projet7_scoring_model')
     origin = repo.remotes.origin
