@@ -39,6 +39,8 @@ def webhook():
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
+
+'push test'
           
 if __name__ == "__main__":
     app.run(port=8000)
