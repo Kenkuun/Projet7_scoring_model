@@ -35,7 +35,7 @@ def proba():
 
 @app.route('/update_server', methods=['GET', 'POST'])
 def webhook():
-        repo = git.Repo('../dash_package')
+        repo = git.Repo('C:\Users\kenji\Documents\OpenClassrooms\Projets\Projet7\dash_package')
         origin = repo.remotes.origin
         origin.pull()
         return 'Updated PythonAnywhere successfully', 200
