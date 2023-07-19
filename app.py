@@ -35,7 +35,7 @@ def proba():
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
-    if request.method == 'POST':
+    if request.method == 'GET':
         repo = git.Repo('../Projet7_scoring_model')
         origin = repo.remotes.origin
         # repo.create_head('master',
