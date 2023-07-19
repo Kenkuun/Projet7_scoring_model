@@ -14,7 +14,7 @@ df = pd.read_csv("df.csv")
 
 @app.route('/', methods=['GET'])
 def index():
-    return 'Home page my friend'
+    return 'Home page my friend it is working!'
 
 @app.route('/get_data')
 def get_data():
@@ -35,13 +35,10 @@ def proba():
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
-    # if request.method == 'POST':
     repo = git.Repo('./Projet7_scoring_model')
     origin = repo.remotes.origin
     origin.pull()
     return 'Updated pythonanywhere successfully', 200
-    # else:
-    #     return 'Not Working'
 
 'push test 10'
           
