@@ -35,7 +35,7 @@ def proba():
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
-    if request.method == 'POST':
+    if request.method == 'GET':
         repo = git.Repo('./')
         origin = repo.remotes.origin
         origin.pull()
