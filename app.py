@@ -36,9 +36,9 @@ def proba():
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('../Projet7_scoring_model')
-        origin = repo.remotes.origin
-        origin.pull()
+        # repo = git.Repo('../Projet7_scoring_model')
+        # origin = repo.remotes.origin
+        # origin.pull()
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Not Working'
