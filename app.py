@@ -39,7 +39,7 @@ def webhook():
         repo = git.Repo('../Projet7_scoring_model')
         origin = repo.remotes.origin
         origin.pull()
-        return 'Updated PythonAnywhere successfully very well', 200
+        return 'Updated PythonAnywhere', 200
     else:
         return 'Not Working'
 
