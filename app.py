@@ -14,7 +14,7 @@ df = pd.read_csv("df.csv")
 
 @app.route('/', methods=['GET'])
 def index():
-    return 'Home page my friend it is working!'
+    return 'Home page'
 
 @app.route('/get_data')
 def get_data():
