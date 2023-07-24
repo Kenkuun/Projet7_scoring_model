@@ -9,7 +9,7 @@ import numpy as np
 
 # data and model importation
 
-df = requests.get("http://127.0.0.1:8000/get_data").json()
+df = requests.get("https://kenjilamy.pythonanywhere.com/get_data").json()
 df = pd.DataFrame(df)
 
 # data processing
@@ -91,7 +91,7 @@ def update_table(value):
 )
 
 def update_score(client_id):
-    r = requests.get("http://127.0.0.1:8000/predict", params={"client_id" : client_id})
+    r = requests.get("https://kenjilamy.pythonanywhere.com/predict", params={"client_id" : client_id})
     val = r.json()
     if val[0] >= val[1]:
         val = val[0]
