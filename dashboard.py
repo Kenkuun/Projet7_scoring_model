@@ -186,5 +186,3 @@ def update_graph(client_id):
         
     return fig, fig5, fig2, fig3, fig4
       
-if __name__ == '__main__':
-    app.run_server(debug=True)
