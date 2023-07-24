@@ -27,7 +27,8 @@ def make_prediction(client_id):
     X = df[df['SK_ID_CURR'] == client_id]
     print("data filter ok")
     X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
-    result = np.around(model.predict_proba(X),2)
+    result = [0.5,0.95]
+    # result = np.around(model.predict_proba(X),2)
     print("result =", result)
     return result
 
