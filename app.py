@@ -26,7 +26,7 @@ def make_prediction(client_id):
     X = df[df['SK_ID_CURR'] == client_id]
     X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
     print("data filter ok")
-    result = [[0.05 0.95]]
+    result = [[0.05, 0.95]]
     print("result =", result)
     return result
 
