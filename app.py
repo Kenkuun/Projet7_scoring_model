@@ -26,7 +26,7 @@ def make_prediction(client_id):
     X = df[df['SK_ID_CURR'] == client_id]
     X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
     print("data filter ok")
-    result = np.around(model.predict(X), 2)
+    result = np.around(model.predict_proba(X), 2)
     print("result =", result)
     return result
 
@@ -34,9 +34,9 @@ def make_prediction(client_id):
 def proba():
     if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
-        pred = make_prediction(client_id)
+        pred = make_prediction(client_id).tolist()[0]
         return pred
-# pred = make_prediction(client_id).tolist()[0]
+
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
