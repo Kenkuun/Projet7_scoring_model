@@ -26,7 +26,7 @@ def make_prediction(client_id):
     X = df[df['SK_ID_CURR'] == client_id]
     X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
     print("data filter ok")
-    result = np.around(model.predict_proba(X),2).tolist()[0]
+    result = np.around(model.predict_proba(X),2)
     return result
 
 @app.route('/predict', methods=['GET'])
@@ -35,7 +35,7 @@ def proba():
     if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
         print("client ID is", client_id)
-        pred = make_prediction(client_id)
+        pred = make_prediction(client_id).tolist()[0]
         print('prediction done')
         return pred
 
