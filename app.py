@@ -34,9 +34,9 @@ def make_prediction(client_id):
 def proba():
     if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
-        return client_id
-        # pred = make_prediction(client_id).tolist()[0]
-        # return pred
+        print("client ID is", client_id)
+        pred = make_prediction(client_id).tolist()[0]
+        return pred
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
