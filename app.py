@@ -31,7 +31,8 @@ def proba():
         X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
         print("data filter ok")
         pred = np.around(model.predict_proba(X),2).tolist()[0]
-        return jsonify(pred)
+        print('prediction done')
+        return pred
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
