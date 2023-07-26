@@ -9,7 +9,7 @@ import pickle
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
 print("start loading model")
-model = pickle.load(open("model_GBM", 'rb'))
+# model = pickle.load(open("model_GBM", 'rb'))
 print("model loaded ok")
 df = pd.read_csv("df.csv")
 
@@ -23,6 +23,7 @@ def get_data():
     return data
 
 def make_prediction(client_id):
+    model = pickle.load(open("model_GBM", 'rb'))
     X = df[df['SK_ID_CURR'] == client_id]
     X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
     print("data filter ok")
