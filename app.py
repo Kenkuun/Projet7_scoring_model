@@ -30,7 +30,7 @@ def make_prediction(client_id):
     print("result =", result)
     return result
 
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['GET'])
 def proba():
     if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
