@@ -24,15 +24,19 @@ def get_data():
 
 @app.route('/predict', methods=['GET'])
 def proba():
-    if 'client_id' in request.args:
+   if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
         print("client ID is", client_id)
         X = df[df['SK_ID_CURR'] == client_id]
         X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
         print("data filter ok")
-        pred = np.around(model.predict_proba(X),2).tolist()[0]
-        print('prediction done')
-        return pred
+        try:
+            pred = np.around(model.predict_proba(X), 2)
+            print('prediction done')
+            return str(pred)  # Convert the prediction to a string and return
+        except Exception as e:
+            print('Error during prediction:', e)
+            return 'Error during prediction'
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
