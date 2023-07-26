@@ -12,11 +12,6 @@ print("start loading model")
 model = pickle.load(open("model_GBM", 'rb'))
 print("model loaded ok")
 df = pd.read_csv("dff.csv")
-X = df[df['SK_ID_CURR'] == 100002]
-X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
-res = np.around(model.predict_proba(X),2)
-print('test result =', res)
-# /home/kenjilamy/Projet7_scoring_model/
 
 @app.route('/', methods=['GET'])
 def index():
@@ -35,12 +30,13 @@ def make_prediction(client_id):
     print("result =", result)
     return result
 
-@app.route('/predict', methods=["GET"])
+@app.route('/predict', methods=['POST', 'GET'])
 def proba():
     if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
-        pred = make_prediction(client_id).tolist()[0]
-        return pred
+        return client_id
+        # pred = make_prediction(client_id).tolist()[0]
+        # return pred
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
