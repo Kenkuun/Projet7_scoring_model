@@ -1,5 +1,5 @@
 import flask
-from flask import request
+from flask import request, jsonify
 import joblib
 import pandas as pd
 import numpy as np
@@ -22,14 +22,6 @@ def get_data():
     data = df.to_json(orient='records')
     return data
 
-def make_prediction(client_id):
-    X = df[df['SK_ID_CURR'] == client_id]
-    X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
-    print("data filter ok")
-    result = np.around(model.predict_proba(X),2)
-    print("result =", result)
-    return result
-
 @app.route('/predict', methods=['GET'])
 def proba():
     if 'client_id' in request.args:
@@ -38,9 +30,8 @@ def proba():
         X = df[df['SK_ID_CURR'] == client_id]
         X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
         print("data filter ok")
-        pred = np.around(model.predict_proba(X),2)
-        # pred = make_prediction(client_id).tolist()[0]
-        return pred
+        pred = np.around(model.predict_proba(X),2).tolist()[0]
+        return jsonify(pred)
 
 @app.route('/update_server', methods=['POST', 'GET'])
 def webhook():
