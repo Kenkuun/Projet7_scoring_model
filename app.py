@@ -11,7 +11,7 @@ app.config["DEBUG"] = False
 print("start loading model")
 model = pickle.load(open("model_GBM", 'rb'))
 print("model loaded ok")
-df = pd.read_csv("df.csv")
+df = pd.read_csv("dff.csv")
 # /home/kenjilamy/Projet7_scoring_model/
 
 @app.route('/', methods=['GET'])
