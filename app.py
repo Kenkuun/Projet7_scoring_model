@@ -37,6 +37,7 @@ def proba():
         print("client ID is", client_id)
         X = df[df['SK_ID_CURR'] == client_id]
         X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
+        print("data filter ok")
         pred = np.around(model.predict_proba(X),2)
         # pred = make_prediction(client_id).tolist()[0]
         return pred
@@ -50,5 +51,5 @@ def webhook():
 
 'push test 10'
           
-# if __name__ == "__main__":
-#     app.run(port=8000)
+if __name__ == "__main__":
+    app.run(port=8000)
