@@ -35,7 +35,10 @@ def proba():
     if 'client_id' in request.args:
         client_id = int(request.args["client_id"])
         print("client ID is", client_id)
-        pred = make_prediction(client_id).tolist()[0]
+        X = df[df['SK_ID_CURR'] == client_id]
+        X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
+        pred = np.around(model.predict_proba(X),2)
+        # pred = make_prediction(client_id).tolist()[0]
         return pred
 
 @app.route('/update_server', methods=['POST', 'GET'])
@@ -47,5 +50,5 @@ def webhook():
 
 'push test 10'
           
-if __name__ == "__main__":
-    app.run(port=8000)
+# if __name__ == "__main__":
+#     app.run(port=8000)
