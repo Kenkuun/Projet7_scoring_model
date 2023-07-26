@@ -11,11 +11,7 @@ app.config["DEBUG"] = False
 print("start loading model")
 model = pickle.load(open("model_GBM", 'rb'))
 print("model loaded ok")
-df = pd.read_csv("dff.csv")
-X = df[df['SK_ID_CURR'] == 100002]
-X = X.drop(columns=['TARGET', 'SK_ID_CURR', 'index'])
-pred = np.around(model.predict_proba(X),2).tolist()[0]
-print('result', pred)
+df = pd.read_csv("df.csv")
 
 @app.route('/', methods=['GET'])
 def index():
